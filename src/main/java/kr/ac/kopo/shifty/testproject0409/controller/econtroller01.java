@@ -2,6 +2,7 @@ package kr.ac.kopo.shifty.testproject0409.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,6 +67,14 @@ public class econtroller01 {
         model.addAttribute("data1", "@MatrixVariable sample ");
         model.addAttribute("data2", "the value of id conveyed request parameter : " + userid
                 +"<br> pwd : " + userpw);
+        return "viewpage01";
+    }
+    @GetMapping("/exam08/{id1}/user/{id2}")
+    public String requestMethod8(@MatrixVariable MultiValueMap<String, String> var1,
+                                 @MatrixVariable(pathVar = "id2") MultiValueMap<String, String> var2,
+                                 Model model) {
+        model.addAttribute("data1", "@Multivalue sample ");
+        model.addAttribute("data2", var1 + "<p>" + var2);
         return "viewpage01";
     }
 }
